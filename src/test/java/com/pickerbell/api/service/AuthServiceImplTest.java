@@ -37,7 +37,7 @@ public class AuthServiceImplTest {
 		userService.setUserInfo(insertUser);
 		
 		// 인코딩 전후 패스워드 비교 요청
-		assertThat(passwordEncoder.matches("user_pass_123!@#", userService.findByLoginId("testuser1").getUserPassword()))
+		assertThat(passwordEncoder.matches("user_pass_123!@#", userService.findByLoginId("testuser1").get().getUserPassword()))
 				.isTrue();
 	}
 	

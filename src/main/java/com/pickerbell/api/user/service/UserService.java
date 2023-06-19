@@ -5,6 +5,7 @@ import com.pickerbell.api.group.domain.GroupInfo;
 import com.pickerbell.api.user.domain.UserInfo;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
 	
@@ -13,14 +14,14 @@ public interface UserService {
 	 * @param userNumber 사용자 고유 순번
 	 * @return UserInfo
 	 */
-	UserInfo getUserInfo(long userNumber);
+	Optional<UserInfo> getUserInfo(long userNumber);
 	
 	/**
 	 * 사용자 로그인 ID 기준으로 정보 조회
 	 * @param loginId 로그인 ID
 	 * @return UserInfo
 	 */
-	UserInfo findByLoginId(String loginId);
+	Optional<UserInfo> findByLoginId(String loginId);
 	
 	/**
 	 * 사용자 정보 저장

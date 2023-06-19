@@ -3,6 +3,7 @@ package com.pickerbell.api.auth.service;
 import com.pickerbell.api.auth.domain.CertUserInfo;
 import com.pickerbell.api.exception.NotFoundRsaKeyException;
 import com.pickerbell.api.security.component.JwtOperation;
+import com.pickerbell.api.security.component.RsaKeyOperation;
 import com.pickerbell.api.security.domain.RsaKey;
 import com.pickerbell.api.security.service.RsaKeyManager;
 import com.pickerbell.api.user.domain.UserInfo;
@@ -21,11 +22,10 @@ public class AuthServiceImpl implements AuthService {
 	
 	private final PasswordEncoder passwordEncoder;
 	private final @Qualifier("redisRsaKeyManager") RsaKeyManager rsaKeyManager;
+	private final RsaKeyOperation rsaKeyOperation;
 	private final JwtOperation jwtOperation;
 	private final UserRepository userRepository;
 	
-	
-//	private static final SignatureAlgorithm JWT_KEY_ALGORITHM = SignatureAlgorithm.HS256;
 	
 	/**
 	 * 로그인 ID와 패스워드를 이용하여 유효한 정보인지 체크 후 JWT 반환.
@@ -42,10 +42,8 @@ public class AuthServiceImpl implements AuthService {
 				throw new NotFoundRsaKeyException();
 			}
 			
-//			String decryptedLoginId = rsaKeyOperation.decrypt(certUserInfo.getLoginId(), rsaKey.getPrivateKey());
-//			String decryptedPassword = rsaKeyOperation.decrypt(certUserInfo.getPassword(), rsaKey.getPrivateKey());
-			String decryptedLoginId = certUserInfo.getLoginId();
-			String decryptedPassword = certUserInfo.getPassword();
+			String decryptedLoginId = rsaKeyOperation.decrypt(certUserInfo.getLoginId(), rsaKey.getPrivateKey());
+			String decryptedPassword = rsaKeyOperation.decrypt(certUserInfo.getPassword(), rsaKey.getPrivateKey());
 			
 			UserInfo user = userRepository.findByLoginId(decryptedLoginId);
 			
@@ -55,7 +53,7 @@ public class AuthServiceImpl implements AuthService {
 			
 			if (passwordEncoder.matches(decryptedPassword, user.getUserPassword())) {
 				// JWT 생성
-				return jwtOperation.createToken(user);
+				return jwtOperation.createUserInfoToken(user);
 			} else {
 				return "cert info not match";
 			}
@@ -66,10 +64,6 @@ public class AuthServiceImpl implements AuthService {
 			e2.printStackTrace();
 			return e2.getMessage();
 		}
-	}
-	
-	public static void main(String[] args) {
-	
 	}
 	
 }

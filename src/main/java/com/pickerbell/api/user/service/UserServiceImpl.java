@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 사용자 정보 처리 기능에 대한 서비스 로직 구현체
@@ -30,8 +31,8 @@ public class UserServiceImpl implements UserService {
 	 * @return UserInfo
 	 */
 	@Override
-	public UserInfo getUserInfo(long userNumber) {
-		return userRepository.find(userNumber);
+	public Optional<UserInfo> getUserInfo(long userNumber) {
+		return Optional.ofNullable(userRepository.find(userNumber));
 	}
 	
 	/**
@@ -40,8 +41,8 @@ public class UserServiceImpl implements UserService {
 	 * @return UserInfo
 	 */
 	@Override
-	public UserInfo findByLoginId(String loginId) {
-		return userRepository.findByLoginId(loginId);
+	public Optional<UserInfo> findByLoginId(String loginId) {
+		return Optional.ofNullable(userRepository.findByLoginId(loginId));
 	}
 	
 	// 사용자 정보 저장

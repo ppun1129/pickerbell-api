@@ -19,9 +19,6 @@ public class SecurityConfig {
 	
 	private final JwtOperation jwtOperation;
 	
-	public SecurityConfig(JwtOperation jwtOperation) {
-		this.jwtOperation = jwtOperation;
-	}
 	
 	/**
 	 * 인증 및 로그인/가입을 위한 URI 패턴을 무시(Spring Security 미적용)

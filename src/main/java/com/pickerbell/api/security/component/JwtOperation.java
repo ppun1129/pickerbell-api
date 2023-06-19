@@ -33,14 +33,14 @@ public class JwtOperation {
 	 * @param user
 	 * @return
 	 */
-	public String createToken(UserInfo user) {
+	public String createUserInfoToken(UserInfo user) {
 		Map<String, Object> claims = new HashMap<>();
 		claims.put("id", user.getId());
 		claims.put("userId", user.getUserId());
 		claims.put("userNickname", user.getUserNickname());
 		
 		Date expireAt = new Date();
-		expireAt.setTime(expireAt.getTime() + (1000 * 60 * 60));
+		expireAt.setTime(expireAt.getTime() + (1000 * 60 * 60));    // 1시간동안 유효
 		
 		String jws = Jwts.builder()
 				.setClaims(claims)
@@ -57,12 +57,12 @@ public class JwtOperation {
 	 * @return
 	 * @throws RuntimeException 토큰이 유효하지 않을 경우 예외 발생
 	 */
-	public UserInfo parseToken(String jws) throws RuntimeException {
+	public UserInfo parseTokenToUserInfo(String jws) throws RuntimeException {
 		Jws<Claims> claimsJws = Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(jws);
 		Claims body = claimsJws.getBody();
 		
 		UserInfo user = new UserInfo();
-		user.setId(body.get("id", Long.class));
+		user.setId(Double.valueOf(body.get("id", Double.class)).longValue());
 		user.setUserId(body.get("userId", String.class));
 		user.setUserNickname(body.get("userNickname", String.class));
 		

@@ -29,7 +29,7 @@ public class UserController {
 	// 사용자 정보 조회
 	@GetMapping("/{userNumber}")
 	public UserInfo getUserInfo(@PathVariable("userNumber") long userNumber) {
-		return userService.getUserInfo(userNumber);
+		return userService.getUserInfo(userNumber).get();
 	}
 	
 	// 사용자 정보 저장
