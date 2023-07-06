@@ -1,9 +1,10 @@
 package com.pickerbell.api.group.repository;
 
 import com.pickerbell.api.group.domain.GroupInfo;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 @Repository
 public class GroupRepository {

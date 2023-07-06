@@ -1,8 +1,9 @@
 package com.pickerbell.api.location.domain.converter;
 
 import com.pickerbell.api.location.domain.type.FoodStoreType;
-import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Convert;
+
+import javax.persistence.AttributeConverter;
+import javax.persistence.Convert;
 
 /**
  * FoodStoreType을 엔티티 혹은 DB에 저장할 때 값을 변환

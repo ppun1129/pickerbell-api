@@ -1,11 +1,12 @@
 package com.pickerbell.api.user.repository;
 
 import com.pickerbell.api.user.domain.UserInfo;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
+
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /*
 ID 중복여부 조회

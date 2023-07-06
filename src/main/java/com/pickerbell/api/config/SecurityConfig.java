@@ -29,7 +29,7 @@ public class SecurityConfig {
 	 */
 	@Bean
 	public WebSecurityCustomizer webSecurityCustomizer() {
-		return (web) -> web.ignoring().requestMatchers("favicon.ico", "/user/**", "/auth/**");
+		return (web) -> web.ignoring().antMatchers("favicon.ico", "/user/**", "/auth/**");
 	}
 	
 	/**
@@ -49,7 +49,7 @@ public class SecurityConfig {
 				.sessionManagement((session) -> session
 						.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests((authorize) -> authorize
-						.requestMatchers("/auth/**", "/user/**").permitAll()
+						.antMatchers("/auth/**", "/user/**").permitAll()
 						.anyRequest().authenticated())
 				.addFilterBefore(new JwtFilter(jwtOperation), UsernamePasswordAuthenticationFilter.class);
 		

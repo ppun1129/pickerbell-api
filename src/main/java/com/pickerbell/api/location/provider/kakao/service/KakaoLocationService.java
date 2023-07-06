@@ -8,13 +8,13 @@ import com.pickerbell.api.location.provider.kakao.domain.SearchByKeywordRoot;
 import com.pickerbell.api.location.provider.kakao.domain.SearchByPointItem;
 import com.pickerbell.api.location.provider.kakao.domain.SearchByPointRoot;
 import com.pickerbell.api.location.service.LocationProvideService;
-import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

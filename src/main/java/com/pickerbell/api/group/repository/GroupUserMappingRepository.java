@@ -3,10 +3,10 @@ package com.pickerbell.api.group.repository;
 import com.pickerbell.api.group.domain.GroupInfo;
 import com.pickerbell.api.group.domain.GroupUserMappingInfo;
 import com.pickerbell.api.user.domain.UserInfo;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 @Repository

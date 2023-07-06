@@ -1,8 +1,9 @@
 package com.pickerbell.api.user.domain.converter;
 
 import com.pickerbell.api.user.domain.type.MemberStateType;
-import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Converter;
+
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 /**
  * MemberStateType을 엔티티 혹은 DB에 저장할 때 값을 변환
